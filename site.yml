@@ -19,9 +19,8 @@
 
 - hosts: all
   become: true
-  roles:
+  roles: 
     - base
-
 - hosts: db_servers
   become: true
   roles: 
@@ -30,8 +29,4 @@
 - hosts: web_servers
   become: true
   roles:
-    - web_servers
-
-
-
-
+    - web_servers    

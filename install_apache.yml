@@ -3,13 +3,19 @@
   become: true
   tasks:
 
-  - name: install apache2 package
+
+  - name: update repository index
+    ansible.builtin.apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package (ubuntu and fedora)
     ansible.builtin.package:
       name:
-        - "{{ apache_package }}"
-        - "{{ php_package }}"
+         - "{{ php_package }}"
+         - "{{ apache_package }}"
       state: latest
       update_cache: yes
-
+  
     
 
