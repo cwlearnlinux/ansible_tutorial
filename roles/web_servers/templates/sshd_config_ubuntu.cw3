@@ -1,5 +1,4 @@
-#Ubuntu Server
-apache_package: apache2
+pache_package: apache2
 apache_service: apache2
 passwd_auth: no
 ssh_template_file: sshd_config_ubuntu.cw3

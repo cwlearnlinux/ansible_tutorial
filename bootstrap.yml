@@ -1,0 +1,48 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates for fedora
+    tags: always
+    ansible.builtin.dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Fedora"
+
+  - name: install updates for Ubuntu
+    tags: always
+    ansible.builtin.apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create jan user
+    tags: always
+    become: true
+    user: 
+      name: jan
+      groups: root
+
+  - name: add ssh key for jan
+    tags: always
+    authorized_key:
+      user: jan
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiIL75KDpww+gfBaFMUSUW1HicaCN3UyoniNVc19rfB ansible"
+
+  - name: add sudoers file for jan
+    tags: always
+    copy: 
+      src: sudoer_jan
+      dest: /etc/sudoers.d/jan
+      owner: root
+      group: root
+      mode: 0440

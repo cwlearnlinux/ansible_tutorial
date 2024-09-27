@@ -3,34 +3,24 @@
   become: true
   pre_tasks:
 
-  - name: update repo cache (fedora)
+  - name: install updates for fedora
     tags: always
     ansible.builtin.dnf:
+      update_only: yes
       update_cache: yes
-    changed_when: false
     when: ansible_distribution == "Fedora"
 
-  - name: update repo cache (Ubuntu)
+  - name: install updates for Ubuntu
     tags: always
     ansible.builtin.apt:
+      upgrade: dist
       update_cache: yes
-    changed_when: false
     when: ansible_distribution == "Ubuntu"
 
 - hosts: web_servers
   become: true
   tasks:
-
-- hosts: all
-  become: true
-  tasks:
-
-  - name: add ssh key for jan
-    tags: always
-    authorized_key:
-      user: jan
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiIL75KDpww+gfBaFMUSUW1HicaCN3UyoniNVc19rfB ansible"
-
+    
   - name: install apache on web servers
     tags: apache,ubuntu
     ansible.builtin.apt:
@@ -95,3 +85,8 @@
         name: mariadb
         state: latest
       when: ansible_distribution == "Fedora"
+
+
+
+
+

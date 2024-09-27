@@ -1,4 +1,4 @@
-- name: install apache on db ad web servers
+- name: install apache on db and web servers
   tags: apache,apache2,httpd,php
   package:
     name:

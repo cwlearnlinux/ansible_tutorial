@@ -17,6 +17,6 @@
   tags: always
   ansible.builtin.authorized_key:
     user: jess
-    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfM0Ejs+dd+xyGk+XPbW/o4ROgacRf>"
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIiIL75KDpww+gfBaFMUSUW1HicaCN3UyoniNVc19rfB ansible"
 
 

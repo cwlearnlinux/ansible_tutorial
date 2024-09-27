@@ -1,2 +1,2 @@
-# Managed by Ansible
+
 jess ALL=(ALL) NOPASSWD: ALL
